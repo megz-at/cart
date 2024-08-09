@@ -1,0 +1,22 @@
+<app-product-list></app-product-list>
+
+<div style="padding: 20px">
+  <h1>Cart</h1>
+  <!-- {{cartService.getItems()|json}} -->
+
+  @for(item of cartService.getItems();track item.id){
+  <div class="cart-item">
+    <h2>{{ item.name }}</h2>
+    <p>Price:{{ item.price }}</p>
+    <p>Quantity:{{ item.quantity }}</p>
+    <div style="display: flex; gap: 10px">
+      <button (click)="deleteFromCart(item)">Delete</button>
+      <button (click)="cartService.incrementQuantity(item.id)">+</button>
+      <button (click)="cartService.decrementQuantity(item.id)">-</button>
+    </div>
+  </div>
+  }
+</div>
+<div style="padding: 20px">
+  <h2>Total : {{ cartService.getTotal() }}</h2>
+</div>
